@@ -1,5 +1,6 @@
 package com.lalosapps.composebasics
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,34 +19,35 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeBasicsTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
-                }
+                MyApp()
             }
         }
     }
 }
 
 @Composable
+fun MyApp() {
+    // A surface container using the 'background' color from the theme
+    Surface(color = MaterialTheme.colors.background) {
+        Greeting("Android")
+    }
+}
+
+@Composable
 fun Greeting(name: String) {
-    Surface(
-        color = MaterialTheme.colors.primary
-    ) {
+    Surface(color = MaterialTheme.colors.primary) {
         Text(
             text = "Hello $name!",
             modifier = Modifier.padding(24.dp)
         )
     }
-
 }
 
-@Preview(showBackground = true)
+@Preview("Light Mode")
+@Preview("Dark Mode", uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun DefaultPreview() {
     ComposeBasicsTheme {
-        Greeting("Android")
+        MyApp()
     }
 }
