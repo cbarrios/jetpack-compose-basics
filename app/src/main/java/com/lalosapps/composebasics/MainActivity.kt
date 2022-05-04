@@ -18,6 +18,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.lalosapps.composebasics.ui.theme.ComposeBasicsTheme
@@ -98,7 +99,12 @@ fun Greeting(name: String) {
                     .padding(bottom = extraPadding) // TODO Warning: The spring animation will set padding as negative resulting in a crash
             ) {
                 Text(text = "Hello,")
-                Text(text = name)
+                Text(
+                    text = name,
+                    style = MaterialTheme.typography.h4.copy(
+                        fontWeight = FontWeight.ExtraBold
+                    )
+                )
             }
             OutlinedButton(onClick = { expanded = !expanded }) {
                 Text(text = if (expanded) "Show Less" else "Show More")
@@ -107,7 +113,7 @@ fun Greeting(name: String) {
     }
 }
 
-@Preview("Light Mode")
+@Preview("Light Mode", showBackground = true)
 @Preview("Dark Mode", uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun MyAppPreview() {
